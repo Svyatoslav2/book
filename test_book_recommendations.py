@@ -1,91 +1,89 @@
-# -*- coding: windows-1251 -*-
-
 from book import recommend_books
 
 def test_recommend_books_single_keyword():
-    # Проверка для одного существующего ключевого слова
-    result = recommend_books("программирование")
-    assert "Рекомендуемые книги:" in result
-    assert "Чистый код - Роберт Мартин" in result
-    assert "Python. К вершинам мастерства - Лучано Рамальо" in result
+    # РџСЂРѕРІРµСЂРєР° РґР»СЏ РѕРґРЅРѕРіРѕ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ РєР»СЋС‡РµРІРѕРіРѕ СЃР»РѕРІР°
+    result = recommend_books("РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ")
+    assert "Р РµРєРѕРјРµРЅРґСѓРµРјС‹Рµ РєРЅРёРіРё:" in result
+    assert "Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ" in result
+    assert "Python. Рљ РІРµСЂС€РёРЅР°Рј РјР°СЃС‚РµСЂСЃС‚РІР° - Р›СѓС‡Р°РЅРѕ Р Р°РјР°Р»СЊРѕ" in result
 
 def test_recommend_books_no_keyword():
-    # Проверка для несуществующего ключевого слова
-    result = recommend_books("несуществующее_слово")
-    assert result == "Не нашел рекомендаций по вашим ключевым словам.\nПопробуйте: программирование, психология, наука, бизнес"
+    # РџСЂРѕРІРµСЂРєР° РґР»СЏ РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ РєР»СЋС‡РµРІРѕРіРѕ СЃР»РѕРІР°
+    result = recommend_books("РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ_СЃР»РѕРІРѕ")
+    assert result == "РќРµ РЅР°С€РµР» СЂРµРєРѕРјРµРЅРґР°С†РёР№ РїРѕ РІР°С€РёРј РєР»СЋС‡РµРІС‹Рј СЃР»РѕРІР°Рј.\nРџРѕРїСЂРѕР±СѓР№С‚Рµ: РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ, РїСЃРёС…РѕР»РѕРіРёСЏ, РЅР°СѓРєР°, Р±РёР·РЅРµСЃ"
 
 def test_recommend_books_multiple_keywords():
-    # Проверка для нескольких ключевых слов
-    result = recommend_books("программирование психология")
-    assert "Рекомендуемые книги:" in result
-    assert "Чистый код - Роберт Мартин" in result  # из категории "программирование"
-    assert "Сила привычки - Чарльз Дахигг" in result  # из категории "психология"
+    # РџСЂРѕРІРµСЂРєР° РґР»СЏ РЅРµСЃРєРѕР»СЊРєРёС… РєР»СЋС‡РµРІС‹С… СЃР»РѕРІ
+    result = recommend_books("РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ РїСЃРёС…РѕР»РѕРіРёСЏ")
+    assert "Р РµРєРѕРјРµРЅРґСѓРµРјС‹Рµ РєРЅРёРіРё:" in result
+    assert "Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ" in result  # РёР· РєР°С‚РµРіРѕСЂРёРё "РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ"
+    assert "РЎРёР»Р° РїСЂРёРІС‹С‡РєРё - Р§Р°СЂР»СЊР· Р”Р°С…РёРіРі" in result  # РёР· РєР°С‚РµРіРѕСЂРёРё "РїСЃРёС…РѕР»РѕРіРёСЏ"
 
 def test_recommend_books_case_insensitive():
-    # Проверка на регистронезависимость
-    result = recommend_books("ПРОГРАММИРОВАНИЕ")
-    assert "Рекомендуемые книги:" in result
-    assert "Чистый код - Роберт Мартин" in result
+    # РџСЂРѕРІРµСЂРєР° РЅР° СЂРµРіРёСЃС‚СЂРѕРЅРµР·Р°РІРёСЃРёРјРѕСЃС‚СЊ
+    result = recommend_books("РџР РћР“Р РђРњРњРР РћР’РђРќРР•")
+    assert "Р РµРєРѕРјРµРЅРґСѓРµРјС‹Рµ РєРЅРёРіРё:" in result
+    assert "Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ" in result
 
 def test_recommend_books_no_duplicates():
-    # Проверка на отсутствие дубликатов
-    # Добавим дубликат вручную (для теста)
+    # РџСЂРѕРІРµСЂРєР° РЅР° РѕС‚СЃСѓС‚СЃС‚РІРёРµ РґСѓР±Р»РёРєР°С‚РѕРІ
+    # Р”РѕР±Р°РІРёРј РґСѓР±Р»РёРєР°С‚ РІСЂСѓС‡РЅСѓСЋ (РґР»СЏ С‚РµСЃС‚Р°)
     from book import book_recommendations
-    original_value = book_recommendations["программирование"][:]
-    book_recommendations["программирование"].append("Чистый код - Роберт Мартин")  # искусственный дубликат
+    original_value = book_recommendations["РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ"][:]
+    book_recommendations["РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ"].append("Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ")  # РёСЃРєСѓСЃСЃС‚РІРµРЅРЅС‹Р№ РґСѓР±Р»РёРєР°С‚
 
-    result = recommend_books("программирование")
-    assert result.count("Чистый код - Роберт Мартин") == 1  # проверяем, что дубликат удален
+    result = recommend_books("РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ")
+    assert result.count("Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ") == 1  # РїСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РґСѓР±Р»РёРєР°С‚ СѓРґР°Р»РµРЅ
 
-    # Восстанавливаем исходные данные
-    book_recommendations["программирование"] = original_value
+    # Р’РѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј РёСЃС…РѕРґРЅС‹Рµ РґР°РЅРЅС‹Рµ
+    book_recommendations["РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ"] = original_value
 
 
 def test_recommend_books_trim_spaces():
-    result = recommend_books("  программирование  ")
-    assert "Чистый код - Роберт Мартин" in result
+    result = recommend_books("  РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ  ")
+    assert "Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ" in result
 
 def test_recommend_books_mixed_known_and_unknown():
-    result = recommend_books("программирование неизвестное_слово")
-    assert "Чистый код - Роберт Мартин" in result
-    assert "Не нашел рекомендаций" not in result
+    result = recommend_books("РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ РЅРµРёР·РІРµСЃС‚РЅРѕРµ_СЃР»РѕРІРѕ")
+    assert "Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ" in result
+    assert "РќРµ РЅР°С€РµР» СЂРµРєРѕРјРµРЅРґР°С†РёР№" not in result
 
 def test_recommend_books_only_unknown_keywords():
-    result = recommend_books("неизвестное1 неизвестное2")
-    assert "Не нашел рекомендаций" in result
+    result = recommend_books("РЅРµРёР·РІРµСЃС‚РЅРѕРµ1 РЅРµРёР·РІРµСЃС‚РЅРѕРµ2")
+    assert "РќРµ РЅР°С€РµР» СЂРµРєРѕРјРµРЅРґР°С†РёР№" in result
 
 def test_recommend_books_with_multiple_spaces():
-    result = recommend_books("   программирование   психология   ")
-    assert "Чистый код - Роберт Мартин" in result
-    assert "Сила привычки - Чарльз Дахигг" in result
+    result = recommend_books("   РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ   РїСЃРёС…РѕР»РѕРіРёСЏ   ")
+    assert "Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ" in result
+    assert "РЎРёР»Р° РїСЂРёРІС‹С‡РєРё - Р§Р°СЂР»СЊР· Р”Р°С…РёРіРі" in result
 
 def test_recommend_books_partial_match_should_fail():
-    result = recommend_books("программирова")  # не должно сработать
-    assert "Рекомендуемые книги" not in result
-    assert "Не нашел рекомендаций" in result
+    result = recommend_books("РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°")  # РЅРµ РґРѕР»Р¶РЅРѕ СЃСЂР°Р±РѕС‚Р°С‚СЊ
+    assert "Р РµРєРѕРјРµРЅРґСѓРµРјС‹Рµ РєРЅРёРіРё" not in result
+    assert "РќРµ РЅР°С€РµР» СЂРµРєРѕРјРµРЅРґР°С†РёР№" in result
 
 def test_recommend_books_result_starts_correctly():
-    result = recommend_books("психология")
-    assert result.startswith("Рекомендуемые книги:")
+    result = recommend_books("РїСЃРёС…РѕР»РѕРіРёСЏ")
+    assert result.startswith("Р РµРєРѕРјРµРЅРґСѓРµРјС‹Рµ РєРЅРёРіРё:")
 
 def test_recommend_books_multiple_matches_count():
-    result = recommend_books("психология наука")
-    lines = result.strip().split("\n")[1:]  # пропускаем первую строку
-    assert len(lines) >= 30  # т.к. по 15 книг в каждой категории
+    result = recommend_books("РїСЃРёС…РѕР»РѕРіРёСЏ РЅР°СѓРєР°")
+    lines = result.strip().split("\n")[1:]  # РїСЂРѕРїСѓСЃРєР°РµРј РїРµСЂРІСѓСЋ СЃС‚СЂРѕРєСѓ
+    assert len(lines) >= 30  # С‚.Рє. РїРѕ 15 РєРЅРёРі РІ РєР°Р¶РґРѕР№ РєР°С‚РµРіРѕСЂРёРё
 
 def test_recommend_books_strip_duplicates_between_categories():
     from book import book_recommendations
-    # Искусственно вставим дубликат из одной категории в другую
-    book_recommendations["психология"].append("Чистый код - Роберт Мартин")
-    result = recommend_books("программирование психология")
-    assert result.count("Чистый код - Роберт Мартин") == 1
-    book_recommendations["психология"].remove("Чистый код - Роберт Мартин")  # cleanup
+    # РСЃРєСѓСЃСЃС‚РІРµРЅРЅРѕ РІСЃС‚Р°РІРёРј РґСѓР±Р»РёРєР°С‚ РёР· РѕРґРЅРѕР№ РєР°С‚РµРіРѕСЂРёРё РІ РґСЂСѓРіСѓСЋ
+    book_recommendations["РїСЃРёС…РѕР»РѕРіРёСЏ"].append("Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ")
+    result = recommend_books("РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ РїСЃРёС…РѕР»РѕРіРёСЏ")
+    assert result.count("Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ") == 1
+    book_recommendations["РїСЃРёС…РѕР»РѕРіРёСЏ"].remove("Р§РёСЃС‚С‹Р№ РєРѕРґ - Р РѕР±РµСЂС‚ РњР°СЂС‚РёРЅ")  # cleanup
 
 def test_recommend_books_return_type():
-    result = recommend_books("наука")
+    result = recommend_books("РЅР°СѓРєР°")
     assert isinstance(result, str)
 
 def test_recommend_books_keywords_with_mixed_case_and_spaces():
-    result = recommend_books("  Психология   НАУКА ")
-    assert "Сила привычки - Чарльз Дахигг" in result
-    assert "Краткая история времени - Стивен Хокинг" in result
+    result = recommend_books("  РџСЃРёС…РѕР»РѕРіРёСЏ   РќРђРЈРљРђ ")
+    assert "РЎРёР»Р° РїСЂРёРІС‹С‡РєРё - Р§Р°СЂР»СЊР· Р”Р°С…РёРіРі" in result
+    assert "РљСЂР°С‚РєР°СЏ РёСЃС‚РѕСЂРёСЏ РІСЂРµРјРµРЅРё - РЎС‚РёРІРµРЅ РҐРѕРєРёРЅРі" in result
